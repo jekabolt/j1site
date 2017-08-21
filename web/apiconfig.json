@@ -1,0 +1,4 @@
+{
+  "database":"mysql",
+  "connectionstring":"root:123@/my"
+}

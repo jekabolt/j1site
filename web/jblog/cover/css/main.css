@@ -1,0 +1,396 @@
+html {
+  background-color: #fffefb;
+  font-family: "Muli", Helvetica, sans-serif;
+}
+
+.wrap {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1000px;
+  margin-top: 80px;
+}
+
+.hero {
+  width: 100%;
+  height: 70vh;
+  background: url(https://vk.com/doc124248761_447960596) no-repeat center;
+  background-position: 45% 45%;
+}
+
+h2 {
+  font-size: 4em;
+  color: #ff310a;
+}
+
+span {
+  font-size: 1.5em;
+}
+
+p {
+  font-size: 2.3em;
+  line-height: 160%;
+}
+
+.cv {
+  background-color: #ff310a;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(51%, #fffefb), color-stop(51%, #ff310a));
+  background: -webkit-linear-gradient(top, #fffefb 51%, #ff310a 51%);
+  background: linear-gradient(top, #fffefb 51%, #ff310a 51%);
+  font-size: 2em;
+}
+
+.cv:hover {
+  background-color: #d1effe;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(51%, #fffefb), color-stop(51%, #d1effe));
+  background: -webkit-linear-gradient(top, #fffefb 51%, #d1effe 51%);
+  background: linear-gradient(top, #fffefb 51%, #d1effe 51%);
+}
+
+.amadoad {
+  background: url(http://www.amadoad.by/images/logo-main.svg) no-repeat center;
+  height: 200px;
+  width: 100%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.mappic {
+  background: url(https://pp.userapi.com/c836124/v836124222/549d7/DUTVaBZgAEE.jpg) no-repeat;
+  height: 800px;
+  width: 100%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.header-container {
+  padding: 1rem 1rem 1.5rem;
+  margin-left: 60px;
+  color: #ff310a;
+}
+
+header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+header .blog, header .cart {
+  font-size: 3rem;
+}
+
+header .blog:hover, header .cart:hover {
+  color: #ff310a;
+  cursor: pointer;
+}
+
+header .logo-container:hover {
+  background: #ff310a;
+  -webkit-mask: url(https://vk.com/doc124248761_447980415) no-repeat center;
+  mask: url(https://vk.com/doc124248761_447980415) no-repeat center;
+  background-size: 250px 250px;
+  cursor: pointer;
+}
+
+header .logo-container {
+  -webkit-mask: url(https://vk.com/doc124248761_447980415) no-repeat center;
+  mask: url(https://vk.com/doc124248761_447980415) no-repeat center;
+  background: #ff310a;
+  background-size: 250px 250px;
+  margin: 0 10px;
+  width: 200px;
+  height: 200px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*::before, *::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 1rem;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  height: auto;
+  max-width: 80%;
+  vertical-align: middle;
+}
+
+.cards {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.cards__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .cards__item {
+    width: 50%;
+  }
+}
+
+@media (max-device-width: 700px) {
+  .cards__item {
+    width: 100%;
+  }
+  .card__text {
+    padding: 0px 20px;
+  }
+  .card__title {
+    padding-bottom: 20px;
+  }
+}
+
+.card {
+  background-color: #fffefb;
+  -webkit-box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card:hover .card__image {
+  -webkit-filter: contrast(100%);
+  filter: contrast(100%);
+}
+
+.card__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.card__image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: url(#blue);
+  filter: url(#blue);
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+  transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+  transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+  transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91), -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+  border-bottom: #ff310a solid 3px;
+}
+
+.card__image::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+@media (min-width: 40rem) {
+  .card__image::before {
+    padding-top: 66.6%;
+  }
+}
+
+.card__image--flowers {
+  background-image: url(https://pp.userapi.com/c637128/v637128632/5e5f0/06ITF8jActI.jpg);
+}
+
+.card__image--river {
+  background-image: url(https://cs7059.userapi.com/c639728/v639728620/31fce/H8Zr46XEGPU.jpg);
+}
+
+.card__image--datahon {
+  background-image: url(https://indatalabs.com/wp-content/uploads/2017/07/Datathon-Data-Science-Partner-3-742x448.jpg);
+}
+
+.card__title {
+  color: #696969;
+  font-size: 1.55rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.card__text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: 1.25rem;
+}
+
+* {
+  margin: 0;
+}
+
+main section {
+  margin: 2em;
+}
+
+section {
+  margin-top: 10%;
+}
+
+.footer-titel {
+  background: #fffefb;
+  color: #ff310a;
+  padding: 0px 30px;
+  text-align: center;
+  font-size: 3em;
+}
+
+.footer-item {
+  padding: 20px 30px;
+}
+
+.footer-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.footer-item {
+  color: #ff310a;
+  width: 33.3333%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+div.footer-item:hover {
+  color: #d0efff;
+}
+
+.footer-item {
+  background: #fffefb;
+}
+
+@media all and (max-width: 960px) {
+  .footer-box {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+  }
+  .footer-item {
+    width: 50%;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .footer-box {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .footer-item {
+    width: 100%;
+  }
+}
+
+.te {
+  background: url(https://vk.com/doc124248761_448022467) no-repeat center;
+}
+
+.be {
+  background: url(https://vk.com/doc124248761_448022456) no-repeat center;
+}
+
+.gi {
+  background: url(https://vk.com/doc124248761_448022460) no-repeat center;
+}
+
+div.footer-item.gi {
+  width: 260px;
+  height: 240px;
+}
+
+div.footer-item.te {
+  width: 260px;
+  height: 240px;
+}
+
+div.footer-item.be {
+  width: 260px;
+  height: 240px;
+}
+
+.four {
+  width: 100%;
+  height: 100vh;
+  background: url(https://vk.com/doc124248761_448031703) no-repeat center;
+  background-position: 50% 50%;
+  -webkit-filter: url(#red);
+  filter: url(#red);
+}
+
+.soon {
+  width: 100%;
+  height: 100vh;
+  background: url(https://vk.com/doc124248761_448033496) no-repeat center;
+  background-position: 50% 50%;
+  -webkit-filter: url(#red);
+  filter: url(#red);
+}

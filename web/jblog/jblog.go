@@ -18,7 +18,7 @@ var historylog struct {
 	sync.RWMutex
 }
 
-func Run() error {
+func Run(port string) error {
 	var err error
 
 	conf := struct {
@@ -43,7 +43,7 @@ func Run() error {
 	http.HandleFunc("/blog/", blogHandler)
 	http.HandleFunc("/404/", notFoundHandler)
 	http.HandleFunc("/datahon/", blogDatahon)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 	fmt.Println("kek")
 	return err
 }

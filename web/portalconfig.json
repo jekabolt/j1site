@@ -1,6 +1,0 @@
-{
-  "filespath": "./web/jblog/cover",
-  "templates": ["./web/jblog/cover/404/404.html",
-                "./web/jblog/cover/datahon/datahon.html",
-                "./web/jblog/cover/blog/blog.html"]
-}

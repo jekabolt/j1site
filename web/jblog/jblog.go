@@ -1,96 +1,76 @@
 package jblog
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
-	"sync"
+	"strings"
 
-	"github.com/jekabolt/j1site/configurator"
-	"github.com/jekabolt/j1site/jdblayer"
-	"github.com/jekabolt/j1site/web/restapi"
+	"github.com/go-chi/chi"
 )
 
-var hydraWebTemplate *template.Template
-var historylog struct {
-	logs []string
-	sync.RWMutex
-}
+var tpl *template.Template
 
-func Run() error {
+func SetHandlers(r *chi.Mux, fp string, tpls []string) {
+
 	var err error
-
-	conf := struct {
-		Filespath string   `json:"filespath"`
-		Templates []string `json:"templates"`
-	}{}
-	err = configurator.GetConfiguration(configurator.JSON, &conf, "./web/portalconfig.json")
+	tpl, err = template.ParseFiles(tpls...)
 	if err != nil {
-		return err
+		log.Printf("[ERROR] template.ParseFiles %s \n", err.Error())
 	}
 
-	hydraWebTemplate, err = template.ParseFiles(conf.Templates...)
-	if err != nil {
-		return err
-	}
+	filesDir := http.Dir(fp)
+	FileServer(r, "/static", filesDir)
 
-	restapi.InitializeAPIHandlers()
-	log.Println(conf.Filespath)
-	log.Println(conf.Templates)
-	fs := http.FileServer(http.Dir(conf.Filespath))
-	http.Handle("/", fs)
-	http.HandleFunc("/blog/", blogHandler)
-	http.HandleFunc("/404/", notFoundHandler)
-	http.HandleFunc("/datahon/", blogDatahon)
-	http.ListenAndServe(":80", nil)
-	fmt.Println("kek")
-	return err
+	r.Get("/", index)
+	r.Get("/404", notFonudHandler)
+	r.Get("/blog", blog)
+	r.Get("/datahon", datahon)
+	// TemplatesFinder(r, ".", "templates")
 }
 
-func crewhandler(w http.ResponseWriter, r *http.Request) {
-	dblayer, err := jdblayer.ConnectDatabase("mongodb", "localhost")
-	if err != nil {
-		return
+// FileServer conveniently sets up a http.FileServer handler to serve
+// static files from a http.FileSystem.
+func FileServer(r chi.Router, path string, root http.FileSystem) {
+	if strings.ContainsAny(path, "{}*") {
+		panic("FileServer does not permit URL parameters.")
 	}
-	all, err := dblayer.AllMembers()
-	if err != nil {
-		return
+
+	fs := http.StripPrefix(path, http.FileServer(root))
+
+	if path != "/" && path[len(path)-1] != '/' {
+		r.Get(path, http.RedirectHandler(path+"/", 301).ServeHTTP)
+		path += "/"
 	}
-	err = hydraWebTemplate.ExecuteTemplate(w, "crew.html", all)
+	path += "*"
+
+	r.Get(path, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fs.ServeHTTP(w, r)
+	}))
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "index.html", nil)
 	if err != nil {
-		log.Println(err)
+		log.Printf("[ERROR] tpls.ExecuteTemplate %s \n", err.Error())
+	}
+}
+func notFonudHandler(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "404.html", nil)
+	if err != nil {
+		log.Printf("[ERROR] tpls.ExecuteTemplate %s \n", err.Error())
+	}
+}
+func blog(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "blog.html", nil)
+	if err != nil {
+		log.Printf("[ERROR] tpls.ExecuteTemplate %s \n", err.Error())
 	}
 }
 
-func abouthandler(w http.ResponseWriter, r *http.Request) {
-	about := struct {
-		Msg string `json:"message"`
-	}{}
-	err := configurator.GetConfiguration(configurator.JSON, &about, "./hydraweb/about.json")
+func datahon(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "datahon.html", nil)
 	if err != nil {
-		return
-	}
-	err = hydraWebTemplate.ExecuteTemplate(w, "about.html", about)
-	if err != nil {
-		log.Println(err)
-	}
-}
-func blogHandler(w http.ResponseWriter, r *http.Request) {
-	err := hydraWebTemplate.ExecuteTemplate(w, "blog.html", nil)
-	if err != nil {
-		log.Println(err)
-	}
-}
-func notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	err := hydraWebTemplate.ExecuteTemplate(w, "404.html", nil)
-	if err != nil {
-		log.Println(err)
-	}
-}
-func blogDatahon(w http.ResponseWriter, r *http.Request) {
-	err := hydraWebTemplate.ExecuteTemplate(w, "datahon.html", nil)
-	if err != nil {
-		log.Println(err)
+		log.Printf("[ERROR] tpls.ExecuteTemplate %s \n", err.Error())
 	}
 }
